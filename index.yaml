@@ -1,0 +1,16 @@
+apiVersion: v1
+entries:
+  k8s-api:
+  - apiVersion: v1
+    appVersion: 0.0.1
+    created: "2021-09-27T14:58:50.948078074Z"
+    description: K8s API service to enable api access to outside of the cluster
+    digest: b5e5a9b297b1447d220b1e44e013ae019377760ccbfaf9498f619bfde73d055f
+    home: https://github.com/argeualcantara/k8s-api-service
+    name: k8s-api
+    sources:
+    - https://github.com/argeualcantara/k8s-api-service
+    urls:
+    - https://github.com/argeualcantara/helm-charts/releases/download/k8s-api-0.0.1/k8s-api-0.0.1.tgz
+    version: 0.0.1
+generated: "2021-09-27T14:58:50.670920264Z"
