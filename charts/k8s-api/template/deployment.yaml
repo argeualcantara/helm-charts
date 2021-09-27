@@ -1,0 +1,29 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "k8s-api.fullname" . }}
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    app: "{{ template "k8s-api.name" . }}"
+    heritage: "{{ .Release.Service }}"
+    release: "{{ .Release.Name }}"
+spec:
+  replicas: {{ .Values.replicaCount }}
+  template:
+    metadata:
+      labels:
+        app: "{{ template "k8s-api.name" . }}"
+        release: "{{ .Release.Name }}"
+    spec:
+      serviceAccountName: {{ template "k8s-api.serviceAccountName" . }}
+      containers:
+      - image: {{ .Values.k8s-api.image }}:{{ .Values.k8s-api.tag }}
+        imagePullPolicy: {{ .Values.imagePullPolicy }}
+        {{- if .Values.imagePullSecrets }}
+        imagePullSecrets:
+{{ toYaml .Values.imagePullSecrets | indent 8 }}
+        {{- end }}
+        name: k8s-api
+        ports:
+        - containerPort: 3000
+          protocol: TCP
